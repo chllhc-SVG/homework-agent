@@ -1,6 +1,9 @@
 export type AgentId = "scout" | "builder" | "critic" | "ethicist" | "synth";
 export type AgentStatus = "idle" | "thinking" | "speaking" | "done" | "error";
 export type EvidenceKind = "fact" | "assumption" | "risk" | "proposal";
+export type ConflictKind = "evidence" | "scope" | "risk" | "responsibility";
+export type ConflictStatus = "open" | "contained" | "resolved" | "deferred";
+export type WorkflowStage = "intake" | "shape" | "challenge" | "safeguard" | "commit";
 
 export interface AgentProfile {
   id: AgentId;
@@ -36,6 +39,26 @@ export interface ConflictEdge {
   target: AgentId;
   intensity: number;
   label: string;
+}
+
+export interface ConflictRecord extends ConflictEdge {
+  id: string;
+  kind: ConflictKind;
+  status: ConflictStatus;
+  claim: string;
+  resolution: string;
+  owner: AgentId;
+  evidenceIds: string[];
+  blocksWorkflow: boolean;
+}
+
+export interface WorkflowNode {
+  stage: WorkflowStage;
+  owner: AgentId;
+  input: string;
+  output: string;
+  gate: string;
+  status: "pending" | "ready" | "passed" | "needs-review";
 }
 
 export interface Decision {

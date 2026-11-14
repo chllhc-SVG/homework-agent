@@ -14,10 +14,12 @@ const required = [
   "prompts/03-debug-and-repro.md",
   "src/domain/types.ts",
   "src/domain/deliberation.ts",
+  "src/domain/conflict-resolution.ts",
   "src/application/deliberation-service.ts",
   "src/infrastructure/provider.ts",
   "src/app/api/deliberate/route.ts",
   "tests/deliberation.test.ts",
+  "tests/conflict-resolution.test.ts",
   "vitest.config.ts",
 ];
 

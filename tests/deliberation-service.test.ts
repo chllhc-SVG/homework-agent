@@ -14,6 +14,9 @@ describe("议事编排层", () => {
     expect(events[0]?.type).toBe("run.started");
     expect(events.at(-1)?.type).toBe("run.completed");
     expect(events.filter((event) => event.type === "message.created")).toHaveLength(4);
+    expect(events.some((event) => event.type === "workflow.created")).toBe(true);
+    expect(events.some((event) => event.type === "conflict.detected")).toBe(true);
+    expect(events.some((event) => event.type === "decision.ready")).toBe(true);
     expect(new Set(events.map((event) => event.eventId)).size).toBe(events.length);
   });
 });
