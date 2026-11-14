@@ -21,9 +21,10 @@
 ## 3. 架构设计
 
 - **View**：Next.js App Router + React 客户端组件，负责交互状态与可视化。
-- **Application**：`/api/deliberate` 以 SSE 发送 `run.started`、`message.created`、`decision.ready`、`run.completed` 事件。
+- **Application**：`src/application/deliberation-service.ts` 负责输入规范化、事件顺序和决议编排；`/api/deliberate` 只负责 HTTP/SSE 适配，发送 `run.started`、`message.created`、`decision.ready`、`run.completed` 事件。
 - **Domain**：`src/domain` 的类型、角色、冲突关系和决议构造保持纯函数，独立于 React 和 Provider。
-- **Provider 边界**：当前默认 Mock Provider，保证评委无 Key 时可确定性运行；生产接入只需在 API 层实现 OpenAI 兼容调用，不污染 UI 和领域层。
+- **Infrastructure**：`src/infrastructure/provider.ts` 定义外部模型接入边界和 Mock/Live 选择规则，避免把密钥、网络请求和领域规则混在组件里。
+- **运行编排**：`scripts/agora.mjs` 提供统一的开发、健康检查、工程验证和比赛材料检查入口，吸收通用的多服务项目启动经验但不复用实习项目代码。
 - **Replay**：前端以事件消息为基础渲染演进回放，展示事件类型、时间和质询关系。
 
 ## 4. 工程质量

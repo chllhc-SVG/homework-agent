@@ -45,13 +45,20 @@ AGORA_ENGINE=auto
 
 ```text
 src/domain        领域类型、角色阵容、决议算法（纯函数）
+src/application   输入规范化、事件编排、Provider 选择
+src/infrastructure 外部模型适配边界与运行时配置
 src/components    议事厅、冲突图谱、决议书、回放 UI
-src/app/api       SSE 流式编排入口
+src/app/api       HTTP/SSE 适配入口
+scripts/          根目录命令编排与健康检查
 prompts/          AI 协同 Prompt 快照
 01-*.md           演进阶段记录
 ```
 
 核心原则：UI 不直接依赖模型；模型只产生结构化事件；领域层负责约束事件形状；回放使用同一事件序列渲染。因此 Provider 可以替换，决议链路仍可检查。事件溯源日志中的每条记录都可以定位到角色、证据、质询关系和决议阶段。
+
+## 与实习项目的边界
+
+本作品只吸收实习期间形成的通用工程经验，例如根命令编排、健康检查、分层设计和环境配置；没有复制实习项目的业务代码、接口、页面、数据、配置或视觉资源。具体边界记录见 `docs/architecture-boundary.md`。本作品的校园决策场景、Agent 角色、证据模型、冲突图谱和决议回放均为本次比赛独立设计。
 
 ## 证据与原创性声明
 
