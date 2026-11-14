@@ -17,6 +17,7 @@ const required = [
   "src/infrastructure/provider.ts",
   "src/app/api/deliberate/route.ts",
   "tests/deliberation.test.ts",
+  "vitest.config.ts",
 ];
 
 const missing = required.filter((file) => !existsSync(file));
