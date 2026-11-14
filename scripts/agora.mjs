@@ -21,7 +21,7 @@ switch (command) {
     run(process.platform === "win32" ? "npm.cmd" : "npm", ["run", "contest:verify"]);
     break;
   case "health": {
-    const url = process.env.AGORA_HEALTH_URL ?? "http://localhost:3000";
+    const url = process.env.AGORA_HEALTH_URL ?? "http://localhost:3000/api/health";
     try {
       const response = await fetch(url, { signal: AbortSignal.timeout(3000) });
       console.log(`${response.ok ? "✔" : "✗"} ${url} → ${response.status}`);
