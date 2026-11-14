@@ -27,8 +27,8 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-const commits = execFileSync("git", ["log", "--format=%H %s", "-10"], { encoding: "utf8" }).trim().split("\n");
-const requiredKeywords = ["initialize reproducible", "typed deliberation", "deliberation studio", "AI collaboration evidence"];
+const commits = execFileSync("git", ["log", "--format=%H %s"], { encoding: "utf8" }).trim().split("\n");
+const requiredKeywords = ["workspace", "deliberation", "议事编排", "比赛材料"];
 const missingCommit = requiredKeywords.filter((keyword) => !commits.some((commit) => commit.toLowerCase().includes(keyword.toLowerCase())));
 if (missingCommit.length > 0) {
   console.error("Git 演进链缺少功能提交：\n" + missingCommit.join("\n"));

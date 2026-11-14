@@ -14,7 +14,7 @@ describe("议场领域层", () => {
     const edges = createConflicts();
     expect(edges).toHaveLength(4);
     expect(edges.every((edge) => edge.intensity >= 0 && edge.intensity <= 1)).toBe(true);
-    expect(edges.some((edge) => edge.label === "自动化边界")).toBe(true);
+    expect(edges.some((edge) => edge.label === "建议还是可交付节点")).toBe(true);
   });
 
   it("决议必须同时包含行动、异议和下一步", () => {
