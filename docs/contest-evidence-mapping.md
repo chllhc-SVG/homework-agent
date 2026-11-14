@@ -55,6 +55,8 @@ e3646aa 完善测试别名和材料校验
 a3107c5 补齐构建配置
 ```
 
+关于“同一输入可复现、不同输入有差异”的验证方式和可直接发送给 Cursor 的真实 Prompt 模板，见 `docs/reproducible-prompt-guide.md`。模板必须在新 Cursor 对话中真实执行后，才能作为证据归档。
+
 仍必须补充的真实材料：
 
 - Cursor 原始对话导出；

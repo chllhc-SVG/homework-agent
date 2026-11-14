@@ -7,6 +7,7 @@ const required = [
   "docs/technical.md",
   "docs/architecture-boundary.md",
   "docs/enterprise-comparison.md",
+  "docs/reproducible-prompt-guide.md",
   "docs/contest-evidence-mapping.md",
   "docs/CONTEST_SUBMISSION_CHECKLIST.md",
   "prompts/README.md",
