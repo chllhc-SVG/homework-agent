@@ -56,10 +56,10 @@ export function createDecision(topic = DEMO_TOPIC, context = DEMO_CONTEXT): Deci
     id: `decision-${stableNumber(`${topic}|${context}`)}`,
     title: `先做${lens.label}的可逆试点，再扩大 Agent 协作范围`,
     issue: topic,
-    recommendation: `以${lens.user}为对象，${lens.pilot}：需求洞察员提交脱敏需求卡，工作流架构师拆解方案卡，风险质询员检查“${lens.risk}”，公平与合规官完成数据和责任检查，项目统筹官最终生成负责人、截止时间和验收指标。AI 只提出建议，团队成员确认后才进入下一节点。`,
+    recommendation: `围绕“${topic}”，以${lens.user}为对象，${lens.pilot}：需求洞察员提交脱敏需求卡，工作流架构师拆解方案卡，风险质询员检查“${lens.risk}”，公平与合规官完成数据和责任检查，项目统筹官最终生成负责人、截止时间和验收指标。AI 只提出建议，团队成员确认后才进入下一节点。`,
     rationale: ["每个 Agent 只负责一种类型的产出，减少多角色重复回答和上下文漂移。", `把“${lens.risk}”转成可观测约束，而不是用观点争论代替验证。`, `将${lens.metric}纳入验收，避免只用单一结果判断试点成败。`],
     dissent: ["墨衡：完整工作流可能让低风险议题变慢，需要保留快速通道。", "秋序：首轮试点只能验证当前假设，不能直接证明长期价值。"],
-    nextSteps: [`为${lens.label}建立脱敏样本和参与者说明`, "为五个工作节点分别定义输入、输出和通过条件", `邀请${lens.user}参与可撤回的影子模式`, `复盘${lens.metric}`],
+    nextSteps: [`围绕“${topic}”建立${lens.label}的脱敏样本和参与者说明`, "为五个工作节点分别定义输入、输出和通过条件", `邀请${lens.user}参与可撤回的影子模式`, `复盘${lens.metric}`],
     confidence: 0.89,
     createdAt: Date.now(),
   };
