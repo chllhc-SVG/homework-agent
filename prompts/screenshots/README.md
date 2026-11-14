@@ -16,9 +16,9 @@
 
 ```text
 01-问题分析/
-  01-01-我的Prompt-问题描述.png
-  01-02-Cursor回复-根因分析.png
-  01-03-Cursor回复-改造方案.png
+  01-01-我的Prompt.png
+  01-02-我的Prompt-补充.png
+  01-03-Cursor回复.png
 ```
 
 这组图片证明：
@@ -34,11 +34,10 @@
 
 ```text
 02-方案实施/
-  02-01-我的Prompt-实施要求.png
-  02-02-Cursor回复-修改计划.png
-  02-03-Cursor修改-领域文件.png
-  02-04-Cursor修改-应用层和页面.png
-  02-05-Cursor回复-验证命令.png
+  02-01-我的Prompt.png
+  02-02-我的Prompt-补充.png
+  02-03-Cursor回复.png
+  02-04-验证结果.png
 ```
 
 这组图片证明：
@@ -54,15 +53,10 @@
 
 ```text
 03-验收测试/
-  03-01-我的Prompt-验收标准.png
-  03-02-Cursor回复-测试方案.png
-  03-03-自动化测试-同输入稳定.png
-  03-04-自动化测试-不同输入有差异.png
-  03-05-自动化测试-交叉质询和决议.png
-  03-06-自动化测试-事件ID稳定.png
-  03-07-终端-npm-run-typecheck.png
-  03-08-终端-npm-test-通过.png
-  03-09-终端-contest-verify-通过.png
+  03-01-我的Prompt.png
+  03-02-验收标准补充.png
+  03-03-Cursor回复.png
+  03-04-测试结果.png
 ```
 
 这组图片证明：

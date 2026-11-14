@@ -9,6 +9,8 @@ const required = [
   "docs/enterprise-comparison.md",
   "docs/reproducible-prompt-guide.md",
   "docs/contest-evidence-mapping.md",
+  "prompts/evidence-manifest.md",
+  "prompts/screenshots/README.md",
   "docs/CONTEST_SUBMISSION_CHECKLIST.md",
   "prompts/README.md",
   "prompts/01-domain-and-scope.md",
