@@ -1,24 +1,19 @@
 import { NextResponse } from "next/server";
-import { createDecision, createOpeningMessages, DEMO_CONTEXT, DEMO_TOPIC } from "@/domain/deliberation";
+import { createDeliberationEvents, normalizeDeliberationInput } from "@/application/deliberation-service";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
-  const body = await request.json().catch(() => ({})) as { topic?: string; context?: string };
-  const topic = body.topic?.trim() || DEMO_TOPIC;
-  const context = body.context?.trim() || DEMO_CONTEXT;
+  const body = await request.json().catch(() => ({}));
+  const input = normalizeDeliberationInput(body);
+  const events = createDeliberationEvents(input);
   const encoder = new TextEncoder();
-  const messages = createOpeningMessages(topic, context);
   const stream = new ReadableStream({
     async start(controller) {
-      const emit = (event: unknown) => controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
-      emit({ type: "run.started", topic, provider: process.env.AI_PROVIDER || "mock" });
-      for (const message of messages) {
-        await new Promise((resolve) => setTimeout(resolve, 180));
-        emit({ type: "message.created", message });
+      for (const event of events) {
+        await new Promise((resolve) => setTimeout(resolve, event.type === "message.created" ? 180 : 80));
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
       }
-      emit({ type: "decision.ready", decision: createDecision() });
-      emit({ type: "run.completed", replayable: true });
       controller.close();
     },
   });
