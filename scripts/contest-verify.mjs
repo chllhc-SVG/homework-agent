@@ -5,6 +5,7 @@ const required = [
   "README.md",
   ".env.example",
   "docs/technical.md",
+  "docs/architecture-boundary.md",
   "docs/CONTEST_SUBMISSION_CHECKLIST.md",
   "prompts/README.md",
   "prompts/01-domain-and-scope.md",
@@ -12,6 +13,8 @@ const required = [
   "prompts/03-debug-and-repro.md",
   "src/domain/types.ts",
   "src/domain/deliberation.ts",
+  "src/application/deliberation-service.ts",
+  "src/infrastructure/provider.ts",
   "src/app/api/deliberate/route.ts",
   "tests/deliberation.test.ts",
 ];

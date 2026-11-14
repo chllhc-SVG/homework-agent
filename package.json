@@ -11,7 +11,11 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "verify": "npm run typecheck && npm run test && npm run build",
-    "contest:verify": "node scripts/contest-verify.mjs"
+    "contest:verify": "node scripts/contest-verify.mjs",
+    "agora:dev": "node scripts/agora.mjs dev",
+    "agora:health": "node scripts/agora.mjs health",
+    "agora:verify": "node scripts/agora.mjs verify",
+    "agora:contest": "node scripts/agora.mjs contest"
   },
   "dependencies": {
     "clsx": "^2.1.1",
