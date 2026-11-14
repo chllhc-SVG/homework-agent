@@ -10,7 +10,10 @@ describe("议事编排层", () => {
   });
 
   it("事件顺序可被完整回放", () => {
-    const events = createDeliberationEvents({ topic: "测试议题", context: "测试约束", provider: "mock" });
+    const input = { topic: "测试议题", context: "测试约束", provider: "mock" as const };
+    const events = createDeliberationEvents(input);
+    const replay = createDeliberationEvents(input);
+    expect(events.map((event) => event.eventId)).toEqual(replay.map((event) => event.eventId));
     expect(events[0]?.type).toBe("run.started");
     expect(events.at(-1)?.type).toBe("run.completed");
     expect(events.filter((event) => event.type === "message.created")).toHaveLength(4);

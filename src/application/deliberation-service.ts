@@ -17,22 +17,28 @@ export interface DeliberationInput {
   provider: string;
 }
 
-const eventId = (prefix: string, index: number) => `${prefix}-${Date.now()}-${index}`;
+const stableToken = (value: string) => {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) hash = Math.imul(hash ^ value.charCodeAt(index), 16777619);
+  return (hash >>> 0).toString(16).slice(0, 8);
+};
+
+const eventId = (prefix: string, index: number, seed: string) => `${prefix}-${stableToken(seed)}-${index}`;
 
 export function createDeliberationEvents(input: DeliberationInput): DeliberationEvent[] {
   const messages = createOpeningMessages(input.topic, input.context);
   const conflicts = resolveConflictsSafely(createConflictRecords(messages));
   const workflow = createWorkflowPlan();
   const events: DeliberationEvent[] = [
-    { type: "run.started", topic: input.topic, provider: input.provider, eventId: eventId("run", 0) },
-    { type: "workflow.created", nodes: workflow, eventId: eventId("workflow", 1) },
-    ...messages.map((message, index) => ({ type: "message.created" as const, message, eventId: eventId("message", index + 2) })),
+    { type: "run.started", topic: input.topic, provider: input.provider, eventId: eventId("run", 0, `${input.topic}|${input.context}`) },
+    { type: "workflow.created", nodes: workflow, eventId: eventId("workflow", 1, `${input.topic}|${input.context}`) },
+    ...messages.map((message, index) => ({ type: "message.created" as const, message, eventId: eventId("message", index + 2, `${input.topic}|${input.context}`) })),
     ...conflicts.flatMap((conflict, index): DeliberationEvent[] => [
-      { type: "conflict.detected", conflict, eventId: eventId("conflict", index + 10) },
-      ...(conflict.status === "contained" ? [{ type: "conflict.contained" as const, conflict, eventId: eventId("contained", index + 20) }] : []),
+      { type: "conflict.detected", conflict, eventId: eventId("conflict", index + 10, `${input.topic}|${input.context}`) },
+      ...(conflict.status === "contained" ? [{ type: "conflict.contained" as const, conflict, eventId: eventId("contained", index + 20, `${input.topic}|${input.context}`) }] : []),
     ]),
-    { type: "decision.ready", decision: createDecision(), eventId: eventId("decision", conflicts.length + 30) },
-    { type: "run.completed", replayable: true as const, eventId: eventId("completed", conflicts.length + 31) },
+    { type: "decision.ready", decision: createDecision(input.topic, input.context), eventId: eventId("decision", conflicts.length + 30, `${input.topic}|${input.context}`) },
+    { type: "run.completed", replayable: true as const, eventId: eventId("completed", conflicts.length + 31, `${input.topic}|${input.context}`) },
   ];
   return events;
 }
