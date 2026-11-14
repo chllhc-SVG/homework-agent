@@ -11,6 +11,7 @@ const required = [
   "docs/contest-evidence-mapping.md",
   "prompts/evidence-manifest.md",
   "prompts/screenshots/README.md",
+  "prompts/screenshots/04-浏览器验收/README.md",
   "docs/CONTEST_SUBMISSION_CHECKLIST.md",
   "prompts/README.md",
   "prompts/01-domain-and-scope.md",
