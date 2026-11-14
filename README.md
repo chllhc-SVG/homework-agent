@@ -64,9 +64,9 @@ AGORA_ENGINE=auto
 ```text
 src/domain        领域类型、角色阵容、决议算法（纯函数）
 src/application   输入规范化、事件编排、Provider 选择
-src/infrastructure 外部模型适配边界与运行时配置
+src/infrastructure 外部模型适配、房间快照与事件仓储
 src/components    议事厅、冲突图谱、决议书、回放 UI
-src/app/api       HTTP/SSE 适配入口
+src/app/api       健康检查、房间、HTTP/SSE 适配入口
 scripts/          根目录命令编排与健康检查
 prompts/          AI 协同 Prompt 快照
 01-*.md           演进阶段记录

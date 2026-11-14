@@ -62,9 +62,10 @@ commit    太史：行动决议卡
 - **View**：Next.js App Router + React 客户端组件，负责交互状态与可视化。
 - **Application**：`src/application/deliberation-service.ts` 负责输入规范化、事件顺序和决议编排；`/api/deliberate` 只负责 HTTP/SSE 适配，发送 `run.started`、`message.created`、`decision.ready`、`run.completed` 事件。
 - **Domain**：`src/domain` 的类型、角色、冲突关系和决议构造保持纯函数，独立于 React 和 Provider。
-- **Infrastructure**：`src/infrastructure/provider.ts` 定义外部模型接入边界和 Mock/Live 选择规则，避免把密钥、网络请求和领域规则混在组件里。
+- **Infrastructure**：`src/infrastructure/provider.ts` 定义外部模型接入边界和 Mock/Live 选择规则；`room-store.ts` 以 JSON 房间快照和追加事件实现轻量事件仓储，避免把密钥、网络请求、文件系统和领域规则混在组件里。
+- **接口层**：`/api/health`、`/api/rooms`、`/api/rooms/:roomId` 和 `/api/deliberate` 分别承担健康检查、房间创建、房间读取和 SSE 编排。
 - **运行编排**：`scripts/agora.mjs` 提供统一的开发、健康检查、工程验证和比赛材料检查入口，吸收通用的多服务项目启动经验但不复用实习项目代码。
-- **Replay**：前端以事件消息为基础渲染演进回放，展示事件类型、时间和质询关系。
+- **Replay**：前端以事件消息和房间快照为基础渲染演进回放，展示事件类型、序号、时间和质询关系。
 
 ## 4. 工程质量
 
