@@ -6,6 +6,7 @@ const required = [
   ".env.example",
   "docs/technical.md",
   "docs/architecture-boundary.md",
+  "docs/contest-evidence-mapping.md",
   "docs/CONTEST_SUBMISSION_CHECKLIST.md",
   "prompts/README.md",
   "prompts/01-domain-and-scope.md",

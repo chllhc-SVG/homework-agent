@@ -75,6 +75,8 @@ GitHub 仓库：<https://github.com/chllhc-SVG/homework-agent>
 
 提交比赛前请将实际使用的 Cursor/AI IDE 原始对话导出文件、截图或录屏放入 `prompts/`，并把每一轮材料与对应 Git commit、视频时间点关联。`prompts/` 中的设计稿和检查表不能替代真实对话证据。
 
+官方评分维度、当前代码、Git 提交、三条 Prompt 证据链和视频时间点已经整理到 `docs/contest-evidence-mapping.md`，提交前按该表逐项核对。
+
 最终提交前可运行：
 
 ```bash
